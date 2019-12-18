@@ -25,29 +25,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Also make sure that the buffer passed to state->layer_text remains valid until the previous animation is
 // stopped. This can be done by either double buffering it or by using constant strings
 static void get_visualizer_layer_and_color(visualizer_state_t* state) {
-//    switch(biton32(default_layer_state)) {
-//      case _BASE:
-//        state->layer_text = "Erogodox Infinity";
-//        state->target_lcd_color = LCD_COLOR(  0,   0, 255);
-//        break;
-//      case _MEDIA:
-//        state->layer_text = "Media";
-//        state->target_lcd_color = LCD_COLOR(148, 255, 255);
-//        break;
-//      case _NUMPAD:
-//        state->layer_text = "Mouse + Numpad";
-//        state->target_lcd_color = LCD_COLOR( 80, 255, 255);
-//        break;
-//      case _FUNC:
-//        state->layer_text = "Function keys";
-//        state->target_lcd_color = LCD_COLOR( 18, 255, 255);
-//        break;
-//    }
-    switch(biton32(state->status.layer)) {
+    switch(biton32(default_layer_state)) {
       case _BASE:
-        state->layer_text = "Erogodox Infinity";
+        state->layer_text = "Ergodox Infinity";
         state->target_lcd_color = LCD_COLOR(  0,   0, 255);
         break;
+    }
+
+    switch(biton32(state->status.layer)) {
       case _MEDIA:
         state->layer_text = "Media";
         state->target_lcd_color = LCD_COLOR(148, 255, 255);
@@ -59,6 +44,8 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
       case _FUNC:
         state->layer_text = "Function keys";
         state->target_lcd_color = LCD_COLOR(190, 255, 255);
+        break;
+      case _BASE:
         break;
       default:
         state->layer_text = "NONE";

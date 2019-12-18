@@ -79,10 +79,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_FUNC] = LAYOUT_ergodox(
             /* LEFT */
             RESET,      KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      _______,
-            _______,    _______,    _______,    _______,    _______,    _______,    BASE,
+            EPRM,       _______,    _______,    _______,    _______,    _______,    BASE,
             _______,    _______,    _______,    _______,    _______,    _______,
-            _______,    BL_BRTG,    BL_TOGG,    BL_DEC,     BL_INC,     LSFT(KC_INS), _______,
-            VRSN,       RGB_SLD,    EPRM,       _______,    _______,
+            _______,    _______,    _______,    _______,    _______,     LSFT(KC_INS), _______,
+            _______,    _______,    _______,    _______,    _______,
                                                                         MAGIC_TOGGLE_NKRO,   _______,
                                                                                     _______,
                                                                         _______,    _______, _______,
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             BASE,       _______,    _______,    _______,    _______,    _______,    KC_F12,
                         _______,    _______,    _______,    _______,    _______,    _______,
             _______,    _______,    _______,    _______,    _______,    KC_RGUI,    KC_RSFT,
-            _______,    _______,    EPRM,       RGB_SLD,    KC_RCTL,
+            _______,    _______,    _______,    _______,    KC_RCTL,
             BASE,       _______,
             _______,
             _______, _______, _______)
@@ -121,41 +121,29 @@ void matrix_init_user() {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+    switch (keycode) {
     case BASE:
       if (record->event.pressed) {
           layer_on(_BASE);
           layer_off(_MEDIA);
           layer_off(_NUMPAD);
           layer_off(_FUNC);
-          set_single_persistent_default_layer(_BASE);
+          //set_single_persistent_default_layer(_BASE);
       }
       return false;
     case MEDIA:
       if (record->event.pressed) {
-          layer_off(_BASE);
           layer_on(_MEDIA);
-          layer_off(_NUMPAD);
-          layer_off(_FUNC);
-        //set_single_persistent_default_layer(_MEDIA);
       }
       return false;
     case NUMPAD:
       if (record->event.pressed) {
-          layer_off(_BASE);
-          layer_off(_MEDIA);
           layer_on(_NUMPAD);
-          layer_off(_FUNC);
-        //set_single_persistent_default_layer(_NUMPAD);
       }
       return false;
     case FUNC:
       if (record->event.pressed) {
-          layer_off(_BASE);
-          layer_off(_MEDIA);
-          layer_off(_NUMPAD);
           layer_on(_FUNC);
-        //set_single_persistent_default_layer(_FUNC);
       }
       return false;
     case EPRM:
